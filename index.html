@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://siphokhuzwayo12-a11y.github.io/index.html/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sovereign Conference Dome v20</title>
+<style>
+:root{--bg:#050709;--panel:#0c1216;--em:#00FF9D;--gold:#FFB800;--cy:#00E5FF;--red:#FF3366;--tx:#F0F4F8;--mute:#8696a5;--line:rgba(0,255,157,.25)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+body{background:var(--bg);color:var(--tx);min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 28px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(5,7,9,.98);z-index:50}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:1px;font-size:1rem}
+.seal{width:12px;height:12px;border-radius:50%;background:var(--em);box-shadow:0 0 12px var(--em)}
+#state{font-size:.72rem;padding:5px 12px;border-radius:20px;border:1px solid var(--mute);color:var(--mute)}
+#state.live{border-color:var(--em);color:var(--em)}
+main{display:grid;grid-template-columns:340px 1fr;gap:18px;padding:20px;max-width:1800px;margin:0 auto}
+.col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px}
+h2{font-size:.85rem;font-weight:700;letter-spacing:.6px;color:var(--mute);margin-bottom:10px}
+label{display:block;font-size:.72rem;color:var(--mute);margin:8px 0 3px}
+input,select,textarea{width:100%;padding:8px 10px;background:#000;border:1px solid rgba(0,255,157,.3);border-radius:6px;color:var(--em);font-size:.8rem;color-scheme:dark}
+input:focus,select:focus,textarea:focus,.btn:focus-visible,.tab:focus-visible{outline:2px solid var(--cy);outline-offset:1px}
+textarea{height:130px;resize:vertical;font-family:monospace}
+.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{background:rgba(255,255,255,.06);color:var(--tx);border:1px solid rgba(255,255,255,.22);padding:8px 14px;border-radius:6px;cursor:pointer;font-weight:600;font-size:.8rem}
+.btn:hover{background:rgba(255,255,255,.15)}
+.em{background:var(--em);color:#000;border:0}.em:hover{background:#00cc7d}
+.mail{background:#EA4335;border:0}.mail:hover{background:#d93025}
+.danger{border-color:var(--red);color:var(--red)}
+.hint{font-size:.72rem;color:var(--mute);line-height:1.4;margin-top:8px}
+#stage{height:480px;background:#000;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--mute);font-size:.85rem;line-height:1.5}
+#stage iframe{width:100%;height:100%;border:0}
+.reader{display:flex;gap:12px;height:420px}
+.shelf{width:190px;flex:none;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
+.tab{background:rgba(255,255,255,.04);color:var(--mute);border:1px solid rgba(255,255,255,.12);padding:8px 10px;border-radius:6px;font-size:.75rem;text-align:left;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tab.on{background:rgba(0,255,157,.14);color:var(--em);border-color:var(--em)}
+#viewer{flex:1;min-width:0;background:#000;border:1px solid var(--line);border-radius:8px;overflow:auto}
+#viewer iframe{width:100%;height:100%;border:0;background:#fff}
+.txt{padding:16px;white-space:pre-wrap;font:.82rem/1.55 monospace;color:var(--em)}
+#pad{width:100%;height:200px;background:#000;border:1px solid var(--line);border-radius:8px;touch-action:none;cursor:crosshair;display:block}
+#toast{position:fixed;bottom:18px;right:18px;background:var(--em);color:#000;padding:10px 20px;border-radius:6px;font-weight:700;transform:translateY(120px);transition:transform .25s;z-index:99;max-width:80vw}
+#toast.show{transform:none}
+@media(max-width:1000px){main{grid-template-columns:1fr}}
+@media(max-width:700px){header{padding:12px}main{padding:10px}.reader{flex-direction:column;height:auto}.shelf{width:100%;flex-direction:row}.tab{flex:none;max-width:160px}#viewer{height:380px}#stage{height:380px}}
+@media(prefers-reduced-motion:reduce){#toast{transition:none}}
+</style></head>
+<body>
+<header>
+  <div class="brand"><div class="seal"></div>Sovereign Conference Dome</div>
+  <div id="state">NO ROOM OPEN</div>
+</header>
+<main>
+<section class="col">
+  <div class="card">
+    <h2>Invite collaborators</h2>
+    <label for="emails">Invitee emails (comma separated)</label>
+    <input id="emails" type="text" placeholder="name@example.com, name2@example.com">
+    <label for="topic">Topic</label>
+    <input id="topic" type="text" value="Bio-Solar Engine artefact review">
+    <div class="row">
+      <div><label for="mDate">Date</label><input id="mDate" type="date"></div>
+      <div><label for="mTime">Start (SAST)</label><input id="mTime" type="time" value="10:00"></div>
+    </div>
+    <label for="mDur">Length (minutes)</label>
+    <input id="mDur" type="number" min="15" step="15" value="60">
+    <label for="pageUrl">Your dome page link (optional, added to the invite)</label>
+    <input id="pageUrl" type="url" placeholder="https://your-name.github.io/your-repo/">
+    <div class="btns">
+      <button class="btn mail" onclick="openGmail()">Open Gmail draft</button>
+      <button class="btn" onclick="downloadIcs()">Download .ics</button>
+    </div>
+    <p class="hint">The Gmail button opens a draft for you to review and send. Nothing is sent by this page. Send the room link only to people you trust.</p>
+  </div>
+  <div class="card">
+    <h2>Sketchpad (your browser only)</h2>
+    <canvas id="pad" width="306" height="200"></canvas>
+    <div class="btns">
+      <button class="btn em" onclick="clearPad()">Clear</button>
+      <button class="btn" onclick="savePad()">Save PNG</button>
+    </div>
+    <p class="hint">Not shared with others. Use the screen share inside the room to show a sketch live.</p>
+  </div>
+</section>
+
+<section class="col">
+  <div class="card">
+    <h2>Live room</h2>
+    <div class="row">
+      <div><label for="name">Your display name</label><input id="name" type="text" value="Sipho (Host)"></div>
+      <div style="flex:2"><label for="meetLink">Meeting link</label><input id="meetLink" type="url" placeholder="https://meet.jit.si/YourRoomName"></div>
+    </div>
+    <div class="btns">
+      <button class="btn em" onclick="launchRoom()">Open room here</button>
+      <button class="btn" onclick="makeRoom()">Create a private room name</button>
+      <button class="btn" onclick="copyLink()">Copy invite link</button>
+      <button class="btn danger" onclick="leaveRoom()">Leave room</button>
+    </div>
+    <div id="stage" style="margin-top:12px">Paste a meeting link, or create a room name, then open the room.<br>Camera, microphone, chat and screen sharing run inside the room itself.</div>
+    <p class="hint">Keep the room to 10 people on the free server. Jitsi links (meet.jit.si, 8x8.vc, or your own Jitsi server) open inside this page. Google Meet and Zoom links open in a new tab, because they cannot be embedded.</p>
+  </div>
+
+  <div class="card">
+    <h2>Document reader</h2>
+    <div class="btns" style="margin:0 0 10px"><label class="btn em" style="margin:0;cursor:pointer">+ Add document<input type="file" accept=".txt,.md,.json,.html,.htm" onchange="addDoc(event)" hidden=""></label></div>
+    <div class="reader">
+      <div class="shelf" id="shelf"><button class="tab on" title="Master R3.1M Brief">Doc: Master R3.1M Brief</button></div>
+      <div id="viewer"><div class="txt">PRESTIGE MASTER INFRASTRUCTURE: R 3.1M CAPEX LEDGER
+====================================================
+Asset valuation: R 3,100,000 ZAR
+Lead architect:  Sipho Wiseman Khuzwayo | Scapush Precision
+
+1. CAPITAL ALLOCATION
+   - Energy Hub (R 1.2M): 30 kW Solar PV + 30 kW BESS
+   - Bio-Reactor (R 1.1M): 70 m3 primary digester and substrate loops
+   - Generation and Thermal (R 800k): CHP co-gen + hydronic thermal manifold
+
+2. REVENUE VECTORS
+   - Vector 1: Baseload electricity generation
+   - Vector 2: Reclaimed co-gen heat for microclimate control
+   - Vector 3: Solid organic N-P-K bio-fertilizer
+   - Vector 4: Liquid foliar digestate
+   - Vector 5: Scrubbed bio-CO2 for yield acceleration
+
+NOTE: Replace this sample with the current reconciled figures before sharing.</div></div>
+    </div>
+    <p class="hint">Documents you add stay in your browser only. To share one, screen share it in the room.</p>
+  </div>
+
+  <div class="card">
+    <h2>Session notes (your browser only)</h2>
+    <textarea id="notes" placeholder="Decisions, questions, changes to the artefacts..."></textarea>
+    <div class="btns"><button class="btn em" onclick="saveNotes()">Download notes (.txt)</button></div>
+    <p class="hint">Notes save automatically on this device. Download them to share with the team.</p>
+  </div>
+</section>
+</main>
+<div id="toast" role="status" class="">Private room name created. Copy the link to invite people.</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const ls={get(k){try{return localStorage.getItem(k)||''}catch(_){return ''}},set(k,v){try{localStorage.setItem(k,v)}catch(_){}}};
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),3200)}
+
+/* ---------- defaults ---------- */
+(()=>{const d=new Date();d.setDate(d.getDate()+1);$('mDate').value=d.toLocaleDateString('en-CA');
+ $('meetLink').value=ls.get('dome_meet');$('pageUrl').value=ls.get('dome_page')||(location.protocol.startsWith('http')?location.href.split('#')[0]:'');
+ $('notes').value=ls.get('dome_notes');$('name').value=ls.get('dome_name')||$('name').value;})();
+$('meetLink').addEventListener('change',e=>ls.set('dome_meet',e.target.value.trim()));
+$('pageUrl').addEventListener('change',e=>ls.set('dome_page',e.target.value.trim()));
+$('name').addEventListener('change',e=>ls.set('dome_name',e.target.value.trim()));
+$('notes').addEventListener('input',e=>ls.set('dome_notes',e.target.value));
+
+/* ---------- live room (Jitsi IFrame API) ---------- */
+const MAX_GUESTS=10;
+let api=null,loaded='';
+const stageHint=$('stage').innerHTML;
+function validLink(){try{const u=new URL($('meetLink').value.trim());return u.protocol==='https:'?u:null}catch(_){return null}}
+function loadScript(src){return new Promise((ok,no)=>{if(loaded===src&&window.JitsiMeetExternalAPI)return ok();
+ const s=document.createElement('script');s.src=src;s.onload=()=>{loaded=src;ok()};s.onerror=()=>no(new Error('load'));document.head.appendChild(s)})}
+async function launchRoom(){
+ const u=validLink();if(!u){toast('Paste a valid https meeting link first.');return}
+ ls.set('dome_meet',u.href);
+ if(!/(^|\.)(jit\.si|8x8\.vc)$/.test(u.hostname)){window.open(u.href,'_blank','noopener');toast('Opened in a new tab (this provider cannot be embedded).');return}
+ const parts=u.pathname.split('/').filter(Boolean);
+ if(!parts.length){toast('The link needs a room name at the end.');return}
+ const src=u.hostname.endsWith('8x8.vc')?`${u.origin}/${parts[0]}/external_api.js`:`${u.origin}/external_api.js`;
+ try{await loadScript(src)}catch(_){toast('Could not load the meeting service. Check your connection or the link.');return}
+ leaveRoom(true);$('stage').textContent='';$('stage').style.padding='0';
+ api=new JitsiMeetExternalAPI(u.host,{roomName:parts.join('/'),parent:$('stage'),width:'100%',height:'100%',
+  userInfo:{displayName:$('name').value.trim()||'Guest'},configOverwrite:{prejoinPageEnabled:true}});
+ api.addListener('readyToClose',()=>leaveRoom());
+ const count=()=>{if(!api)return;const n=api.getNumberOfParticipants();$('state').textContent=`ROOM OPEN · ${n}/${MAX_GUESTS}`;
+  if(n>MAX_GUESTS)toast(`Room is over ${MAX_GUESTS} people. Ask someone to leave, or turn on the lobby in the room menu.`)};
+ ['participantJoined','participantLeft','videoConferenceJoined'].forEach(ev=>api.addListener(ev,()=>setTimeout(count,400)));
+ $('state').textContent=`ROOM OPEN · 0/${MAX_GUESTS}`;$('state').classList.add('live');
+}
+function leaveRoom(quiet){
+ if(api){try{api.dispose()}catch(_){}api=null}
+ $('stage').innerHTML=stageHint;$('stage').style.padding='20px';
+ $('state').textContent='NO ROOM OPEN';$('state').classList.remove('live');
+ if(!quiet&&!api)toast('Left the room.');
+}
+function makeRoom(){
+ const a=new Uint8Array(9);crypto.getRandomValues(a);
+ const id=Array.from(a,b=>b.toString(36).padStart(2,'0')).join('').slice(0,14);
+ $('meetLink').value=`https://meet.jit.si/SovereignDome-${id}`;ls.set('dome_meet',$('meetLink').value);
+ toast('Private room name created. Copy the link to invite people.');
+}
+async function copyLink(){const u=validLink();if(!u){toast('No valid meeting link yet.');return}
+ try{await navigator.clipboard.writeText(u.href);toast('Invite link copied.')}catch(_){toast('Copy failed. Select the link and copy it manually.')}}
+
+/* ---------- invitations ---------- */
+function getEmails(){return $('emails').value.split(/[,;\s]+/).filter(e=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e))}
+function getStart(){const d=$('mDate').value,t=$('mTime').value||'10:00';if(!d)return null;
+ const s=new Date(`${d}T${t}:00+02:00`);return isNaN(s)?null:s}
+function body(start){const u=validLink(),p=$('pageUrl').value.trim();
+ return `Hello,\n\nYou are invited to a working session.\n\nTopic: ${$('topic').value.trim()}\nWhen: ${start.toLocaleString('en-ZA',{timeZone:'Africa/Johannesburg',dateStyle:'full',timeStyle:'short'})} (South Africa time)\nJoin the room: ${u.href}\n`+(p?`Reference page: ${p}\n`:'')+`\nRegards,\n${$('name').value.trim()||'Host'}`}
+function openGmail(){
+ const to=getEmails(),start=getStart();
+ if(!to.length){toast('Enter at least one valid email.');return}
+ if(!start){toast('Pick a date and time.');return}
+ if(!validLink()){toast('Add a meeting link first (use "Create a private room name").');return}
+ const t=$('topic').value.trim();
+ window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to.join(','))}&su=${encodeURIComponent(t+' - scheduled session')}&body=${encodeURIComponent(body(start))}`,'_blank','noopener');
+ toast('Gmail draft opened. Review it and press Send.');
+}
+const z=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+const esc=s=>s.replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');
+function downloadIcs(){
+ const start=getStart();if(!start){toast('Pick a date and time.');return}
+ const u=validLink();if(!u){toast('Add a meeting link first.');return}
+ const end=new Date(start.getTime()+(parseInt($('mDur').value,10)||60)*60000);
+ const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Sovereign Dome//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+  `UID:${Date.now()}-${Math.random().toString(36).slice(2)}@sovereign-dome`,`DTSTAMP:${z(new Date())}`,`DTSTART:${z(start)}`,`DTEND:${z(end)}`,
+  `SUMMARY:${esc($('topic').value.trim()||'Working session')}`,`DESCRIPTION:${esc('Join the room: '+u.href)}`,`LOCATION:${esc(u.href)}`,
+  ...getEmails().map(e=>`ATTENDEE;RSVP=TRUE:mailto:${e}`),'STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'];
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar'}));
+ a.download=`session-${$('mDate').value}.ics`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Calendar file downloaded.');
+}
+
+/* ---------- document reader (safe rendering) ---------- */
+const docs=[{name:'Master R3.1M Brief',type:'text',content:
+`PRESTIGE MASTER INFRASTRUCTURE: R 3.1M CAPEX LEDGER
+====================================================
+Asset valuation: R 3,100,000 ZAR
+Lead architect:  Sipho Wiseman Khuzwayo | Scapush Precision
+
+1. CAPITAL ALLOCATION
+   - Energy Hub (R 1.2M): 30 kW Solar PV + 30 kW BESS
+   - Bio-Reactor (R 1.1M): 70 m3 primary digester and substrate loops
+   - Generation and Thermal (R 800k): CHP co-gen + hydronic thermal manifold
+
+2. REVENUE VECTORS
+   - Vector 1: Baseload electricity generation
+   - Vector 2: Reclaimed co-gen heat for microclimate control
+   - Vector 3: Solid organic N-P-K bio-fertilizer
+   - Vector 4: Liquid foliar digestate
+   - Vector 5: Scrubbed bio-CO2 for yield acceleration
+
+NOTE: Replace this sample with the current reconciled figures before sharing.`}];
+let cur=0;
+function renderShelf(){const s=$('shelf');s.textContent='';
+ docs.forEach((d,i)=>{const b=document.createElement('button');b.className='tab'+(i===cur?' on':'');b.textContent=(d.type==='html'?'Web: ':'Doc: ')+d.name;b.title=d.name;b.onclick=()=>showDoc(i);s.appendChild(b)})}
+function showDoc(i){cur=i;renderShelf();const d=docs[i],v=$('viewer');v.textContent='';
+ if(d.type==='html'){const f=document.createElement('iframe');f.setAttribute('sandbox','allow-scripts');f.srcdoc=d.content;v.appendChild(f)}
+ else{const p=document.createElement('div');p.className='txt';p.textContent=d.content;v.appendChild(p)}}
+function addDoc(e){const f=e.target.files[0];if(!f)return;
+ if(f.size>2e6){toast('File too large (2 MB max).');return}
+ const r=new FileReader();r.onload=()=>{docs.push({name:f.name,type:/\.html?$/i.test(f.name)?'html':'text',content:String(r.result)});showDoc(docs.length-1);toast('Added '+f.name)};
+ r.readAsText(f);e.target.value=''}
+showDoc(0);
+
+/* ---------- notes ---------- */
+function saveNotes(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([$('notes').value],{type:'text/plain'}));
+ a.download=`session-notes-${new Date().toISOString().slice(0,10)}.txt`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Notes downloaded.')}
+
+/* ---------- sketchpad ---------- */
+const cv=$('pad'),cx=cv.getContext('2d');let down=false;
+function sizePad(){const r=cv.getBoundingClientRect();cv.width=Math.max(300,Math.round(r.width));cv.height=200;cx.strokeStyle='#00FF9D';cx.lineWidth=2;cx.lineCap='round'}
+setTimeout(sizePad,60);
+function pos(e){const r=cv.getBoundingClientRect();return{x:(e.clientX-r.left)*cv.width/r.width,y:(e.clientY-r.top)*cv.height/r.height}}
+cv.addEventListener('pointerdown',e=>{down=true;cv.setPointerCapture(e.pointerId);const p=pos(e);cx.beginPath();cx.moveTo(p.x,p.y)});
+cv.addEventListener('pointermove',e=>{if(!down)return;const p=pos(e);cx.lineTo(p.x,p.y);cx.stroke()});
+['pointerup','pointercancel'].forEach(n=>cv.addEventListener(n,()=>down=false));
+function clearPad(){cx.clearRect(0,0,cv.width,cv.height)}
+function savePad(){const a=document.createElement('a');a.download='sketch.png';a.href=cv.toDataURL('image/png');a.click()}
+</script>
+
+</body></html>
