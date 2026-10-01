@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)https://siphokhuzwayo12-a11y.github.io/index.html/ -->
+<!-- saved from url=(0044)file:///C:/Users/ASUS/Downloads/index_3.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,7 +30,7 @@ textarea{height:130px;resize:vertical;font-family:monospace}
 .mail{background:#EA4335;border:0}.mail:hover{background:#d93025}
 .danger{border-color:var(--red);color:var(--red)}
 .hint{font-size:.72rem;color:var(--mute);line-height:1.4;margin-top:8px}
-#stage{height:480px;background:#000;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--mute);font-size:.85rem;line-height:1.5}
+#stage{height:72vh;min-height:460px;background:#000;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--mute);font-size:.85rem;line-height:1.5}
 #stage iframe{width:100%;height:100%;border:0}
 .reader{display:flex;gap:12px;height:420px}
 .shelf{width:190px;flex:none;display:flex;flex-direction:column;gap:6px;overflow-y:auto}
@@ -52,6 +52,23 @@ textarea{height:130px;resize:vertical;font-family:monospace}
   <div id="state">NO ROOM OPEN</div>
 </header>
 <main>
+  <div class="card" style="grid-column:1/-1">
+    <h2>Live room</h2>
+    <div class="row">
+      <div><label for="name">Your display name</label><input id="name" type="text" value="Sipho (Host)"></div>
+      <div style="flex:2"><label for="meetLink">Meeting link</label><input id="meetLink" type="url" placeholder="https://meet.jit.si/YourRoomName"></div>
+    </div>
+    <div class="btns">
+      <button class="btn em" onclick="launchRoom()">Open room here</button>
+      <button class="btn" onclick="makeRoom()">Create a private room name</button>
+      <button class="btn" onclick="roomCmd('toggleChat')">Show / hide chat</button>
+      <button class="btn" onclick="roomCmd('toggleTileView')">Grid view</button>
+      <button class="btn" onclick="copyLink()">Copy invite link</button>
+      <button class="btn danger" onclick="leaveRoom()">Leave room</button>
+    </div>
+    <div id="stage" style="margin-top:12px">Paste a meeting link, or create a room name, then open the room.<br>Camera, microphone, chat and screen sharing run inside the room itself.</div>
+    <p class="hint">Keep the room to 10 people on the free server. Jitsi links (meet.jit.si, 8x8.vc, or your own Jitsi server) open inside this page. Google Meet and Zoom links open in a new tab, because they cannot be embedded.</p>
+  </div>
 <section class="col">
   <div class="card">
     <h2>Invite collaborators</h2>
@@ -85,22 +102,6 @@ textarea{height:130px;resize:vertical;font-family:monospace}
 </section>
 
 <section class="col">
-  <div class="card">
-    <h2>Live room</h2>
-    <div class="row">
-      <div><label for="name">Your display name</label><input id="name" type="text" value="Sipho (Host)"></div>
-      <div style="flex:2"><label for="meetLink">Meeting link</label><input id="meetLink" type="url" placeholder="https://meet.jit.si/YourRoomName"></div>
-    </div>
-    <div class="btns">
-      <button class="btn em" onclick="launchRoom()">Open room here</button>
-      <button class="btn" onclick="makeRoom()">Create a private room name</button>
-      <button class="btn" onclick="copyLink()">Copy invite link</button>
-      <button class="btn danger" onclick="leaveRoom()">Leave room</button>
-    </div>
-    <div id="stage" style="margin-top:12px">Paste a meeting link, or create a room name, then open the room.<br>Camera, microphone, chat and screen sharing run inside the room itself.</div>
-    <p class="hint">Keep the room to 10 people on the free server. Jitsi links (meet.jit.si, 8x8.vc, or your own Jitsi server) open inside this page. Google Meet and Zoom links open in a new tab, because they cannot be embedded.</p>
-  </div>
-
   <div class="card">
     <h2>Document reader</h2>
     <div class="btns" style="margin:0 0 10px"><label class="btn em" style="margin:0;cursor:pointer">+ Add document<input type="file" accept=".txt,.md,.json,.html,.htm" onchange="addDoc(event)" hidden=""></label></div>
@@ -136,7 +137,7 @@ NOTE: Replace this sample with the current reconciled figures before sharing.</d
   </div>
 </section>
 </main>
-<div id="toast" role="status" class="">Private room name created. Copy the link to invite people.</div>
+<div id="toast" role="status"></div>
 
 <script>
 const $=id=>document.getElementById(id);
@@ -168,14 +169,16 @@ async function launchRoom(){
  const src=u.hostname.endsWith('8x8.vc')?`${u.origin}/${parts[0]}/external_api.js`:`${u.origin}/external_api.js`;
  try{await loadScript(src)}catch(_){toast('Could not load the meeting service. Check your connection or the link.');return}
  leaveRoom(true);$('stage').textContent='';$('stage').style.padding='0';
- api=new JitsiMeetExternalAPI(u.host,{roomName:parts.join('/'),parent:$('stage'),width:'100%',height:'100%',
+ api=new JitsiMeetExternalAPI(u.host,{roomName:parts.join('/'),parentNode:$('stage'),width:'100%',height:'100%',
   userInfo:{displayName:$('name').value.trim()||'Guest'},configOverwrite:{prejoinPageEnabled:true}});
  api.addListener('readyToClose',()=>leaveRoom());
  const count=()=>{if(!api)return;const n=api.getNumberOfParticipants();$('state').textContent=`ROOM OPEN · ${n}/${MAX_GUESTS}`;
   if(n>MAX_GUESTS)toast(`Room is over ${MAX_GUESTS} people. Ask someone to leave, or turn on the lobby in the room menu.`)};
+ api.addListener('videoConferenceJoined',()=>{if(innerWidth>900)api.executeCommand('toggleChat')});
  ['participantJoined','participantLeft','videoConferenceJoined'].forEach(ev=>api.addListener(ev,()=>setTimeout(count,400)));
- $('state').textContent=`ROOM OPEN · 0/${MAX_GUESTS}`;$('state').classList.add('live');
+ $('stage').scrollIntoView({block:'start'});$('state').textContent=`ROOM OPEN · 0/${MAX_GUESTS}`;$('state').classList.add('live');
 }
+function roomCmd(c){if(!api){toast('Open the room first.');return}api.executeCommand(c)}
 function leaveRoom(quiet){
  if(api){try{api.dispose()}catch(_){}api=null}
  $('stage').innerHTML=stageHint;$('stage').style.padding='20px';
